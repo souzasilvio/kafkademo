@@ -1,5 +1,5 @@
 # kafkademo
-Demonstration project to produce and consume kafka messages. This demo was made using developer account on Confluent Kafka.
+Demonstration project to produce and consume kafka messages. This demo was made using developer account on Confluent Kafka (https://confluent.cloud/).
 
 This sample implements a producer/consumer pattern as present in this diagraman.
 Use:
