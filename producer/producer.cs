@@ -21,19 +21,19 @@ class Producer {
     {
         const string topic = "clientes";
 
-        string[] users = { "eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther" };
-        string[] items = { "book", "alarm clock", "t-shirts", "gift card", "batteries" };
 
         using (var producer = new ProducerBuilder<string, string>(configuration.AsEnumerable()).Build())
         {
-            var numProduced = 0;            
+            var numProduced = 0;
+            Random rnd = new Random();
             for (int i = 0; i < total; ++i)
             {
-                Random rnd = new Random();
-                var user = users[rnd.Next(users.Length)];
-                var item = items[rnd.Next(items.Length)];
-
-                producer.Produce(topic, new Message<string, string> { Key = user, Value = item },
+                
+                var cliente = new producer.Model.Cliente();
+                cliente.Id = rnd.Next();
+                cliente.Nome = $"Cliente {cliente.Id}";
+                var msg = Newtonsoft.Json.JsonConvert.SerializeObject(cliente);
+                producer.Produce(topic, new Message<string, string> { Key = cliente.Id.ToString(), Value = msg  },
                     (deliveryReport) =>
                     {
                         if (deliveryReport.Error.Code != ErrorCode.NoError)
@@ -42,7 +42,7 @@ class Producer {
                         }
                         else
                         {
-                            Console.WriteLine($"Produced event to topic {topic}: key = {user,-10} value = {item}");
+                            Console.WriteLine($"Produced event to topic {topic}: key = {cliente.Id,-10} value = {msg}");
                             numProduced += 1;
                         }
                     });
