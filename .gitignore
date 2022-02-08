@@ -3,3 +3,12 @@
 ################################################################################
 
 /producer/bin/Debug/netcoreapp6.0
+/.vs/Kafka
+/producer/obj
+/producer/.vs/producer
+/apiKey-EUVOTPPP425BWDZS.txt
+/getting-started.properties
+/consumer/bin/Debug/netcoreapp6.0
+/consumer/obj
+/consumer2/bin/Debug/netcoreapp6.0
+/consumer2/obj
